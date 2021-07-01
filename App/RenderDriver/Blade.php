@@ -11,7 +11,7 @@ class Blade implements RenderInterface
 
     public function __construct()
     {
-        $this->template = new BladeInstance(EASYSWOOLE_ROOT . '/App/Views', EASYSWOOLE_ROOT . '/App/Caches/Views');
+        $this->template = new BladeInstance(EASYSWOOLE_ROOT . '/App/Views', EASYSWOOLE_ROOT . '/Caches/Views');
 
     }
 
