@@ -81,5 +81,28 @@ class AppProvider
         // 注册 rpc 服务
         $rpc->attachServer(\EasySwoole\EasySwoole\ServerManager::getInstance()->getSwooleServer());
     }
+
+    public function regitserRender()
+    {
+        ###### 注册 render 服务 ######
+        $renderConfig = \EasySwoole\Template\Render::getInstance()->getConfig();
+
+        // [可选配置]
+        /*
+        $renderConfig->setTimeout(3); // 设置 超时时间，默认为 3s，不建议修改
+        $renderConfig->setServerName('EasySwoole'); // 设置 渲染引擎驱动服务名称，不建议修改
+        $renderConfig->setWorkerNum(3); // 设置 渲染引擎服务工作进程数，默认为 3，不建议修改
+        */
+
+        // 设置 渲染引擎模板驱动
+        $renderConfig->setRender(new \App\RenderDriver\Blade());
+
+        // 设置 渲染引擎进程 Socket 存放目录，默认为 getcwd()
+        $renderConfig->setTempDir('/Temp');
+
+        // 注册进程到 EasySwoole 主服务
+
+        \EasySwoole\Template\Render::getInstance()->attachServer(\EasySwoole\EasySwoole\ServerManager::getInstance()->getSwooleServer());
+    }
 }
 

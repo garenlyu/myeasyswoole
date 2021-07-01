@@ -4,16 +4,14 @@
 namespace App\HttpController;
 
 use App\Providers\AppProvider;
-use App\RpcServices\NodeManager\RedisManager;
 use EasySwoole\Http\AbstractInterface\Controller;
-use EasySwoole\Redis\Config\RedisConfig;
-use EasySwoole\RedisPool\Pool;
 use EasySwoole\Rpc\Protocol\Response;
+use EasySwoole\Template\Render;
 
-class Index extends Controller
+class Example extends Controller
 {
 
-    public function index()
+    public function rpc()
     {
         // 如果在同server中 直接用保存的rpc实例调用即可
         // $rpc = \EasySwoole\Component\Di::getInstance()->get('rpc');
@@ -45,5 +43,12 @@ class Index extends Controller
         // 执行调用
         $client->exec();
         $this->writeJson(200, $ret);
+    }
+
+    public function index()
+    {
+        $this->response()->write(Render::getInstance()->render('example.index', [
+            'content' => '示例首页内容'
+        ]));
     }
 }
