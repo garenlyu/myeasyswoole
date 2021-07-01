@@ -1,5 +1,5 @@
+/Caches
+/Log
+/Temp
 /vendor
 composer.lock
-/Log/*
-/Temp
-/Caches
