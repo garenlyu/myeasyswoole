@@ -21,5 +21,7 @@ class EasySwooleEvent implements Event
     public static function mainServerCreate(EventRegister $register)
     {
         AppProvider::getInstance()->regitserRpcService();
+
+        AppProvider::getInstance()->regitserRender();
     }
 }

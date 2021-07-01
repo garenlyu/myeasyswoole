@@ -14,7 +14,7 @@
 
       <v-main>
         <v-container>
-          @yield('example.index')
+          <?php echo $__env->yieldContent('example.index'); ?>
         </v-container>
       </v-main>
     </v-app>
@@ -22,6 +22,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
-  @yield('script')
+  <?php echo $__env->yieldContent('script'); ?>
 </body>
-</html>
+</html><?php /**PATH /var/www/myeasyswoole/App/Views/layouts/app.blade.php ENDPATH**/ ?>

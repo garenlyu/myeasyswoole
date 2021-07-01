@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-@section('title', '示例首页')
 @section('example.index')
     {{ $content }}
 @endsection
