@@ -13,16 +13,11 @@ class ExampleModule extends AbstractServiceModule
 
     function list()
     {
-        $this->response()->setResult([
-            [
-                'exampleId' => '100001',
-                'exampleName' => '例1'
-            ],
-            [
-                'exampleId' => '100002',
-                'exampleName' => '例2'
-            ]
-        ]);
+        $data = $this->request()->getArg();
+        var_dump($data);
+        $name = $data['name'];
+        $age = $data['age'];
+        $this->response()->setResult('用户名：'.$name.'|年龄：'.$age);
         $this->response()->setMsg('get example list success');
     }
 

@@ -10,7 +10,8 @@
 <body>
   <div id="app">
     <v-app>
-      <v-app-bar app></v-app-bar>
+      <v-app-bar app
+        color="primary"></v-app-bar>
 
       <v-main>
         <v-container>
