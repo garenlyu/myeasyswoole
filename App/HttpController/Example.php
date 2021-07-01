@@ -47,9 +47,6 @@ class Example extends Controller
 
     public function index()
     {
-        var_dump(Render::getInstance()->render('example.index', [
-            'content' => '示例首页内容'
-        ]));
         $this->response()->write(Render::getInstance()->render('example.index', [
             'content' => '示例首页内容'
         ]));
