@@ -3,3 +3,4 @@
 /Temp
 /vendor
 composer.lock
+core.*
