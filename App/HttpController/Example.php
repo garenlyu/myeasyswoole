@@ -51,5 +51,7 @@ class Example extends ApiBase
         //     'content' => '示例首页内容'
         // ]));
         $this->writeJson(200, ['name' => 'easyswoole'], 'SUCCESS');
+
+        
     }
 }
