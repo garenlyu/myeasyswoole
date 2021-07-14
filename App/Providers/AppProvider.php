@@ -52,10 +52,7 @@ class AppProvider
 
     public function getRpc()
     {
-        $redisConfig = \EasySwoole\EasySwoole\Config::getInstance()->getConf('REDIS');
-        $redisPool = new \EasySwoole\RedisPool\Pool(new \EasySwoole\Redis\Config\RedisConfig($redisConfig));
-        $redisManager = new \App\RpcServices\NodeManager\RedisManager($redisPool);
-        $rpcConfig = new \EasySwoole\Rpc\Config($redisManager);
+        $rpcConfig = $this->getRpcConfig();
         $rpc = new \EasySwoole\Rpc\Rpc($rpcConfig);
 
         return $rpc;
