@@ -13,7 +13,10 @@ return [
         'SETTING' => [
             'worker_num' => 8,
             'reload_async' => true,
-            'max_wait_time' => 3
+            'max_wait_time' => 3,
+            # 设置处理 Swoole 静态文件
+            'document_root' => EASYSWOOLE_ROOT . '/public/',
+            'enable_static_handler' => true,
         ],
         'TASK' => [
             'workerNum' => 4,
