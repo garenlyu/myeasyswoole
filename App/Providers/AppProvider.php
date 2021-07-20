@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Util\Common;
 use EasySwoole\Component\CoroutineSingleTon;
 
 class AppProvider
@@ -111,6 +110,19 @@ class AppProvider
         // 注册进程到 EasySwoole 主服务
 
         \EasySwoole\Template\Render::getInstance()->attachServer(\EasySwoole\EasySwoole\ServerManager::getInstance()->getSwooleServer());
+    }
+
+    public function regitsterFileWatcher()
+    {
+        # code...
+        $watcher = new \EasySwoole\FileWatcher\FileWatcher();
+        $rule = new \EasySwoole\FileWatcher\WatchRule(EASYSWOOLE_ROOT . "/App"); // 设置监控规则和监控目录
+        $watcher->addRule($rule);
+        $watcher->setOnChange(function () {
+            \EasySwoole\EasySwoole\Logger::getInstance()->info('file change ,reload!!!');
+            \EasySwoole\EasySwoole\ServerManager::getInstance()->getSwooleServer()->reload();
+        });
+        $watcher->attachServer(\EasySwoole\EasySwoole\ServerManager::getInstance()->getSwooleServer());
     }
 }
 

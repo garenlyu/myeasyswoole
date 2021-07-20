@@ -1,21 +1,30 @@
 <?php
 
-
 namespace App\HttpController;
 
-use App\Util\Common;
+use App\Models\OauthModel;
+use App\Util\Redis;
 use EasySwoole\Http\AbstractInterface\Controller;
 
 class Oauth extends Controller
 {
-    public function index()
+    public function create()
     {
-        $api_token = \EasySwoole\Utility\Random::character(60);
-        $redisPool = Common::getInstance()->getRedisPool();
-        $redisPool->hSet('oauth_'.$api_token, 'api_token', $api_token);
-        $redisPool->expire('oauth_'.$api_token, 7200);
-        $oauthInfo = $redisPool->hGetAll('oauth_'.$api_token);
+        $appId = \EasySwoole\Utility\SnowFlake::make(); //雪花算法生成appid
+        $appSecret = md5($appId);
 
-        return $this->writeJson(200, $oauthInfo, 'SUCCESS');
+        $oauthData = [
+            'app_id' => $appId,
+            'app_secret' => $appSecret,
+            'created_at' => date('Y-m-d H:i:s'),
+        ];
+        OauthModel::create($oauthData)->save();
+        
+        $redisPool = Redis::getInstance()->getRedisPool();
+        $redisPool->hMSet('oauth_'.$appId, $oauthData);
+        $redisPool->expire('oauth_'.$appId, 7200);
+        $oauthInfo = $redisPool->hGetAll('oauth_'.$appId);
+
+        return $this->writeJson(200, $oauthInfo, 'Success');
     }
 }

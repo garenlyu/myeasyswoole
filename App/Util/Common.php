@@ -2,35 +2,10 @@
 
 namespace App\Util;
 
-use EasySwoole\Component\CoroutineSingleTon;
-
-/**公共函数*/
+/**公共类静态方法*/
 class Common
 {
-    use CoroutineSingleTon;
-
-    public function getRedisPool()
-    {
-        $redisPool = \EasySwoole\RedisPool\RedisPool::defer();
-
-        return $redisPool;
-    }
-
-    public function remember(string $key, int $seconds, callable $call)
-    {
-        $cacheVal = $this->getRedisPool()->get($key);
-        if(!$cacheVal){
-            $data = call_user_func($call);
-            $this->getRedisPool()->set($key, json_encode($data), ['NX','EX' => $seconds]);
-            $cacheVal = $this->getRedisPool()->get($key);
-        }
-        
-        $cacheValArr = json_decode($cacheVal, true);
-
-        return $cacheValArr;
-    }
-
-    public function generateSignature($params, $secretKey)
+    public static function generateSignature($params, $secretKey)
     {
         ksort($params);
         unset($params['sign']);
@@ -41,5 +16,27 @@ class Common
         $signStr .= 'key='.$secretKey;
         
         return md5($signStr);
+    }
+
+    //生成uuid
+    public static function generateUuid($prefix = '')
+    {
+        $chars = md5(uniqid(mt_rand(), true));
+        $uuid = substr ( $chars, 0, 8 ) . '-'
+            . substr ( $chars, 8, 4 ) . '-'
+            . substr ( $chars, 12, 4 ) . '-'
+            . substr ( $chars, 16, 4 ) . '-'
+            . substr ( $chars, 20, 12 );
+
+        return $prefix.$uuid;
+    }
+
+    //生成用户token
+    public static function generateUserToken()
+    {
+        $snowFlake = \EasySwoole\Utility\SnowFlake::make();
+        $userToken = sha1($snowFlake);
+
+        return $userToken;
     }
 }

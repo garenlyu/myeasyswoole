@@ -20,8 +20,15 @@ class EasySwooleEvent implements Event
 
     public static function mainServerCreate(EventRegister $register)
     {
-        AppProvider::getInstance()->regitserRpcService();
+        // AppProvider::getInstance()->regitserRpcService();
 
         AppProvider::getInstance()->regitserRender();
+
+        //开发模式下使用热重载
+        if (\EasySwoole\EasySwoole\Core::getInstance()->runMode() === 'dev') {
+            AppProvider::getInstance()->regitsterFileWatcher();
+        }
+
+        
     }
 }

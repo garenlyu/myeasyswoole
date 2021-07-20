@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\HttpController;
 
 use App\Providers\AppProvider;
@@ -50,7 +49,7 @@ class Example extends ApiBase
         // $this->response()->write(Render::getInstance()->render('example.index', [
         //     'content' => '示例首页内容'
         // ]));
-        $this->writeJson(200, ['name' => 'easyswoole'], 'SUCCESS');
+        $this->writeJson(200, ['name' => 'easyswoole'], 'Success');
 
         
     }
