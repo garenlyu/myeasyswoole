@@ -22,7 +22,14 @@ class EasySwooleEvent implements Event
     {
         // Registry::regitserRpcService();
 
+        //注册模板引擎
         Registry::regitserRender();
+
+        //注册队列驱动
+        Registry::regitserQueueDriver(\App\Configs\AppConfig::TEST_QUEUE, \App\Queues\TestQueue::class);
+
+        //注册消费者进程
+        Registry::regitserQueueConsumerProcess();
 
         //开发模式下使用热重载
         if (\EasySwoole\EasySwoole\Core::getInstance()->runMode() === 'dev') {

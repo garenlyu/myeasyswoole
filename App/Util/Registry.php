@@ -121,5 +121,25 @@ class Registry
         });
         $watcher->attachServer(\EasySwoole\EasySwoole\ServerManager::getInstance()->getSwooleServer());
     }
+
+    public static function regitserQueueConsumerProcess()
+    {
+        // 注册一个消费进程
+        $processConfig = new \EasySwoole\Component\Process\Config([
+            'processName' => 'QueueConsummerProcess', // 设置 自定义进程名称
+            'processGroup' => 'Queue', // 设置 自定义进程组名称
+            'enableCoroutine' => true, // 设置 自定义进程自动开启协程
+        ]);
+        $queueConsumerProcess = new \App\Process\QueueConsumerProcess($processConfig);
+        \EasySwoole\Component\Process\Manager::getInstance()->addProcess($queueConsumerProcess);
+    }
+
+    public static function regitserQueueDriver($queueName, $queueClass)
+    {
+        $redisConfig = \EasySwoole\EasySwoole\Config::getInstance()->getConf('REDIS');
+        // 配置 队列驱动器
+        $driver = new \EasySwoole\Queue\Driver\RedisQueue(new \EasySwoole\Redis\Config\RedisConfig($redisConfig), $queueName);
+        $queueClass::getInstance($driver);
+    }
 }
 
