@@ -7,7 +7,7 @@ class Redis
 {
     use \EasySwoole\Component\CoroutineSingleTon;
 
-    public function getRedisPool()
+    public static function getRedisPool()
     {
         $redisPool = \EasySwoole\RedisPool\RedisPool::defer();
 
@@ -15,16 +15,16 @@ class Redis
     }
 
     //仅限string 类型储存
-    public function remember(string $key, int $seconds, callable $call)
+    public static function remember(string $key, int $seconds, callable $call)
     {
-        $cacheVal = $this->getRedisPool()->get($key);
+        $cacheVal = self::getRedisPool()->get($key);
         if(!$cacheVal){
             $data = call_user_func($call);
             if(is_array($data)){
                 $data = json_encode($data);
             }
-            $this->getRedisPool()->set($key, $data, ['NX','EX' => $seconds]);
-            $cacheVal = $this->getRedisPool()->get($key);
+            self::getRedisPool()->set($key, $data, ['NX','EX' => $seconds]);
+            $cacheVal = self::getRedisPool()->get($key);
         }
         
         $cacheValArr = json_decode($cacheVal, true);

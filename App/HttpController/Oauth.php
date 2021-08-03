@@ -20,7 +20,7 @@ class Oauth extends Controller
         ];
         OauthModel::create($oauthData)->save();
         
-        $redisPool = Redis::getInstance()->getRedisPool();
+        $redisPool = Redis::getRedisPool();
         $redisPool->hMSet('oauth_'.$appId, $oauthData);
         $redisPool->expire('oauth_'.$appId, 7200);
         $oauthInfo = $redisPool->hGetAll('oauth_'.$appId);

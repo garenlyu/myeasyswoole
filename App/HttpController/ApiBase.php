@@ -8,9 +8,9 @@ namespace App\HttpController;
 use App\Util\Common;
 use App\Util\Redis;
 use EasySwoole\Http\Message\Status;
-use EasySwoole\HttpAnnotation\AnnotationController;
+use EasySwoole\Http\AbstractInterface\Controller;
 
-abstract class ApiBase extends AnnotationController
+abstract class ApiBase extends Controller
 {
 
     protected $userInfo;
@@ -51,7 +51,7 @@ abstract class ApiBase extends AnnotationController
         }
 
         if($this->request()->getRequestParam('user_token')){
-            $userInfo = Redis::getInstance()->getRedisPool()->hGetAll('user_token_'.$this->request()->getRequestParam('user_token'));
+            $userInfo = Redis::getRedisPool()->hGetAll('user_token_'.$this->request()->getRequestParam('user_token'));
             if(!$userInfo){
                 $this->writeJson(Status::CODE_UNAUTHORIZED, null, 'user_token错误');
                 return false;
@@ -65,14 +65,14 @@ abstract class ApiBase extends AnnotationController
     protected function checkSign($params)
     {
         //获取用户apiKey
-        $apiKey = Redis::getInstance()->getRedisPool()->hGet('oauth_'.$params['appId'], 'api_key');
+        $apiKey = Redis::getRedisPool()->hGet('oauth_'.$params['appId'], 'api_key');
         $signature = Common::generateSignature($params, $apiKey);
         var_dump($signature);
         if ($signature !== $params['sign'])
             return false;
 
         //验签通过后，保存时间戳和随机字符串，防止重放
-        Redis::getInstance()->getRedisPool()->setNx('sign', $signature);
+        Redis::getRedisPool()->setNx('sign', $signature);
 
         return true;
     }
