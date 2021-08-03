@@ -1,21 +1,18 @@
 <?php
 
-namespace App\Providers;
+namespace App\Util;
 
-use EasySwoole\Component\CoroutineSingleTon;
-
-class AppProvider
+class Registry
 {
-    use CoroutineSingleTon;
 
-    public function regitserOrm()
+    public static function regitserOrm()
     {
         $dbConfig = new \EasySwoole\ORM\Db\Config(\EasySwoole\EasySwoole\Config::getInstance()->getConf('MYSQL'));
 
         \EasySwoole\ORM\DbManager::getInstance()->addConnection(new \EasySwoole\ORM\Db\Connection($dbConfig));
     }
 
-    public function regitserRedisPool()
+    public static function regitserRedisPool()
     {
         $redisConfig = \EasySwoole\EasySwoole\Config::getInstance()->getConf('REDIS');
         $redisPoolConfig = \EasySwoole\RedisPool\RedisPool::getInstance()->register(new \EasySwoole\Redis\Config\RedisConfig($redisConfig));
@@ -24,7 +21,7 @@ class AppProvider
         $redisPoolConfig->setMaxObjectNum(20);
     }
 
-    public function getRedis()
+    public static function getRedis()
     {
         $redisConfig = \EasySwoole\EasySwoole\Config::getInstance()->getConf('REDIS');
         $redisPoolConfig = new \EasySwoole\Redis\Redis($redisConfig);
@@ -32,14 +29,14 @@ class AppProvider
         return $redisPoolConfig;
     }
 
-    public function getRedisPool()
+    public static function getRedisPool()
     {
         $redisPool = \EasySwoole\RedisPool\RedisPool::defer();
 
         return $redisPool;
     }
 
-    public function getRpcConfig()
+    public static function getRpcConfig()
     {
         $redisConfig = \EasySwoole\EasySwoole\Config::getInstance()->getConf('REDIS');
         $redisPool = new \EasySwoole\RedisPool\Pool(new \EasySwoole\Redis\Config\RedisConfig($redisConfig));
@@ -49,20 +46,20 @@ class AppProvider
         return $rpcConfig;
     }
 
-    public function getRpc()
+    public static function getRpc()
     {
-        $rpcConfig = $this->getRpcConfig();
+        $rpcConfig = self::getRpcConfig();
         $rpc = new \EasySwoole\Rpc\Rpc($rpcConfig);
 
         return $rpc;
     }
 
-    public function regitserRpcService()
+    public static function regitserRpcService()
     {
         ###### 注册 rpc 服务 ######
         /** rpc 服务端配置 */
         // 采用了redis 节点管理器 可以关闭udp 广播了。
-        $rpcConfig = $this->getRpcConfig();
+        $rpcConfig = self::getRpcConfig();
         $rpcConfig->setNodeId('EasySwooleRpcNode1');
         $rpcConfig->setServerName('EasySwoole'); // 默认 EasySwoole
         $rpcConfig->setOnException(function (\Throwable $throwable) {
@@ -89,7 +86,7 @@ class AppProvider
         $rpc->attachServer(\EasySwoole\EasySwoole\ServerManager::getInstance()->getSwooleServer());
     }
 
-    public function regitserRender()
+    public static function regitserRender()
     {
         ###### 注册 render 服务 ######
         $renderConfig = \EasySwoole\Template\Render::getInstance()->getConfig();
@@ -112,7 +109,7 @@ class AppProvider
         \EasySwoole\Template\Render::getInstance()->attachServer(\EasySwoole\EasySwoole\ServerManager::getInstance()->getSwooleServer());
     }
 
-    public function regitsterFileWatcher()
+    public static function regitsterFileWatcher()
     {
         # code...
         $watcher = new \EasySwoole\FileWatcher\FileWatcher();
