@@ -1,7 +1,6 @@
 {
     "require": {
         "easyswoole/easyswoole": "3.4.x",
-        "easyswoole/rpc": "5.x",
         "easyswoole/redis-pool": "^2.2",
         "easyswoole/orm": "^1.4",
         "easyswoole/swoole-ide-helper": "^1.3",

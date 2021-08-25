@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Configs;
+namespace App\Config;
 
-class AppConfig
+class Queue
 {
     const TEST_QUEUE = 'test_queue';
 }
