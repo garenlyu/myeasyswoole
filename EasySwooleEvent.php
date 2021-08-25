@@ -26,13 +26,19 @@ class EasySwooleEvent implements Event
         Register::regitserRender();
 
         //注册队列驱动
-        Register::regitserQueueDriver(\App\Config\AppConfig::TEST_QUEUE, \App\Queues\TestQueue::class);
+        Register::regitserQueueDriver(\App\Config\Queue::TEST_QUEUE, \App\Queues\TestQueue::class);
 
         //注册消费者进程
         Register::regitserQueueConsumerProcess();
 
-        //开发模式下使用热重载
-        if (\EasySwoole\EasySwoole\Core::getInstance()->runMode() === 'dev') {
+        //注册定时器进程
+        Register::regitserTimerProcess();
+
+        //注册crontab进程
+        Register::regitserCrontabProcess();
+
+        //非生产模式下使用热重载
+        if (\EasySwoole\EasySwoole\Core::getInstance()->runMode() !== 'produce') {
             Register::regitsterFileWatcher();
         }
 

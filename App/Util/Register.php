@@ -57,6 +57,34 @@ class Register
         $watcher->attachServer(\EasySwoole\EasySwoole\ServerManager::getInstance()->getSwooleServer());
     }
 
+    public static function regitserCrontabProcess()
+    {
+        $processConfig = new \EasySwoole\Component\Process\Config([
+            'processName' => 'CrontabProcess', // 设置 进程名称为 CrontabProcess
+            'processGroup' => 'Crontab', // 设置 进程组名称为 Crontab
+            'enableCoroutine' => true, // 设置 自定义进程自动开启协程环境
+        ]);
+
+        // 【推荐】使用 \EasySwoole\Component\Process\Manager 类注册自定义进程
+        $crontabProcess = (new \App\Processes\CrontabProcess($processConfig));
+        // 注册进程
+        \EasySwoole\Component\Process\Manager::getInstance()->addProcess($crontabProcess);
+    }
+
+    public static function regitserTimerProcess()
+    {
+        $processConfig = new \EasySwoole\Component\Process\Config([
+            'processName' => 'TimerProcess', // 设置 进程名称为 TimerProcess
+            'processGroup' => 'Timer', // 设置 进程组名称为 Tick
+            'enableCoroutine' => true, // 设置 自定义进程自动开启协程环境
+        ]);
+
+        // 【推荐】使用 \EasySwoole\Component\Process\Manager 类注册自定义进程
+        $timerProcess = (new \App\Processes\TimerProcess($processConfig));
+        // 注册进程
+        \EasySwoole\Component\Process\Manager::getInstance()->addProcess($timerProcess);
+    }
+
     public static function regitserQueueConsumerProcess()
     {
         // 注册一个消费进程
@@ -65,7 +93,7 @@ class Register
             'processGroup' => 'Queue', // 设置 自定义进程组名称
             'enableCoroutine' => true, // 设置 自定义进程自动开启协程
         ]);
-        $queueConsumerProcess = new \App\Process\QueueConsumerProcess($processConfig);
+        $queueConsumerProcess = new \App\Processes\QueueConsumerProcess($processConfig);
         \EasySwoole\Component\Process\Manager::getInstance()->addProcess($queueConsumerProcess);
     }
 
