@@ -13,5 +13,5 @@ class OauthModel extends AbstractModel
      /**
       * @var string 
       */
-    protected $tableName = 'oauth';
+    protected $tableName = '`oauth`';
 }

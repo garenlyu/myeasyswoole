@@ -43,7 +43,7 @@ return [
         'password'      => 'Root@123456!', // 数据库用户密码
         'timeout'       => 45, // 数据库连接超时时间
         'charset'       => 'utf8', // 数据库字符编码
-        'database'      => 'topuphub', // 数据库名
+        'database'      => 'myeasyswoole', // 数据库名
         'autoPing'      => 5, // 自动 ping 客户端链接的间隔
         'strict_type'   => false, // 不开启严格模式
         'fetch_mode'    => false,
