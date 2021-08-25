@@ -3,7 +3,7 @@
 
 namespace EasySwoole\EasySwoole;
 
-use App\Util\Registry;
+use App\Util\Register;
 use EasySwoole\EasySwoole\AbstractInterface\Event;
 use EasySwoole\EasySwoole\Swoole\EventRegister;
 
@@ -13,27 +13,27 @@ class EasySwooleEvent implements Event
     {
         date_default_timezone_set('Asia/Shanghai');
 
-        Registry::regitserOrm();
+        Register::regitserOrm();
 
-        Registry::regitserRedisPool();
+        Register::regitserRedisPool();
     }
 
     public static function mainServerCreate(EventRegister $register)
     {
-        // Registry::regitserRpcService();
+        // Register::regitserRpcService();
 
         //注册模板引擎
-        Registry::regitserRender();
+        Register::regitserRender();
 
         //注册队列驱动
-        Registry::regitserQueueDriver(\App\Configs\AppConfig::TEST_QUEUE, \App\Queues\TestQueue::class);
+        Register::regitserQueueDriver(\App\Configs\AppConfig::TEST_QUEUE, \App\Queues\TestQueue::class);
 
         //注册消费者进程
-        Registry::regitserQueueConsumerProcess();
+        Register::regitserQueueConsumerProcess();
 
         //开发模式下使用热重载
         if (\EasySwoole\EasySwoole\Core::getInstance()->runMode() === 'dev') {
-            Registry::regitsterFileWatcher();
+            Register::regitsterFileWatcher();
         }
 
         

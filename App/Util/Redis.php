@@ -5,8 +5,6 @@ namespace App\Util;
 /**Redis*/
 class Redis
 {
-    use \EasySwoole\Component\CoroutineSingleTon;
-
     public static function getRedisPool()
     {
         $redisPool = \EasySwoole\RedisPool\RedisPool::defer();
