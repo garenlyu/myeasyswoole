@@ -9,7 +9,8 @@
         "duncan3dc/blade": "^4.5",
         "easyswoole/redis": "^1.3",
         "easyswoole/file-watcher": "^1.0",
-        "jenssegers/blade": "^1.4"
+        "jenssegers/blade": "^1.4",
+        "easyswoole/queue": "3.x"
     },
     "autoload": {
         "psr-4": {
