@@ -1,17 +1,17 @@
 <?php
 
-namespace App\RenderDriver;
+namespace App\RenderDrivers;
 
-use duncan3dc\Laravel\BladeInstance;
+use Jenssegers\Blade\Blade;
 use EasySwoole\Template\RenderInterface;
 
-class Blade implements RenderInterface
+class BladeDriver implements RenderInterface
 {
     private $template;
 
     public function __construct()
     {
-        $this->template = new BladeInstance(EASYSWOOLE_ROOT . '/App/Views', EASYSWOOLE_ROOT . '/Caches/Views');
+        $this->template = new Blade(EASYSWOOLE_ROOT . '/App/Views', EASYSWOOLE_ROOT . '/Caches/Views');
 
     }
 
