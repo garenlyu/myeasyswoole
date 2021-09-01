@@ -34,7 +34,7 @@ class Register
         */
 
         // 设置 渲染引擎模板驱动
-        $renderConfig->setRender(new \App\RenderDrivers\Blade());
+        $renderConfig->setRender(new \App\RenderDrivers\BladeDriver());
 
         // 设置 渲染引擎进程 Socket 存放目录，默认为 getcwd()
         $renderConfig->setTempDir('/Temp');
