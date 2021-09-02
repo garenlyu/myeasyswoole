@@ -34,6 +34,12 @@ return [
     ],
     'TEMP_DIR' => '/Temp',
 
+    'APP' => [
+        'appUrl' => '',
+        'apiUrl' => '',
+        'rpcUrl' => ''
+    ],
+
     // 添加 MySQL 及对应的连接池配置
     /*################ MYSQL CONFIG ##################*/
     'MYSQL' => [
@@ -42,7 +48,7 @@ return [
         'user'          => 'root', // 数据库用户名
         'password'      => 'Root@123456!', // 数据库用户密码
         'timeout'       => 45, // 数据库连接超时时间
-        'charset'       => 'utf8', // 数据库字符编码
+        'charset'       => 'utf8mb4', // 数据库字符编码
         'database'      => 'myeasyswoole', // 数据库名
         'autoPing'      => 5, // 自动 ping 客户端链接的间隔
         'strict_type'   => false, // 不开启严格模式
