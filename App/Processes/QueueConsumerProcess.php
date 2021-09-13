@@ -1,9 +1,10 @@
 <?php
 namespace App\Processes;
 
-use App\Queues\TestQueue;
+use App\Queues\LogQueue;
 use EasySwoole\Queue\Job;
 use EasySwoole\Component\Process\AbstractProcess;
+use App\Tasks\LogTask;
 
 class QueueConsumerProcess extends AbstractProcess
 {
@@ -13,21 +14,15 @@ class QueueConsumerProcess extends AbstractProcess
     {
         echo 'QueueConsumer 进程启动'.PHP_EOL;
 
-        $this->appConfig = \EasySwoole\EasySwoole\Config::getInstance()->getConf('APP');
-
-        //【订单创建队列】队列消费
+        //【日志队列】队列消费
         go(function (){
-            TestQueue::getInstance()->consumer()->listen(function (Job $job){
-                $orderData = $job->getJobData();
-                var_dump($orderData);
+            LogQueue::getInstance()->consumer()->listen(function (Job $job){
+                $log = $job->getJobData();
 
-                TestQueue::getInstance()->consumer()->confirm($job); //任务确认
+                //投递日志任务
+                \EasySwoole\EasySwoole\Task\TaskManager::getInstance()->async(new LogTask($log['input'], $log['output'], $log['logName']));
 
-                //记录
-                \EasySwoole\EasySwoole\Logger::getInstance()->info(json_encode([
-                    'input' => $orderData,
-                    'output' => null
-                ], JSON_UNESCAPED_UNICODE), 'QueueConsumerProcess.testQueue');
+                LogQueue::getInstance()->consumer()->confirm($job); //任务确认
             });
         });
     }

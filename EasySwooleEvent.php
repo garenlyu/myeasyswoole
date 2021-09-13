@@ -26,7 +26,7 @@ class EasySwooleEvent implements Event
         Register::regitserRender();
 
         //注册队列驱动
-        Register::regitserQueueDriver(\App\Config\Queue::TEST_QUEUE, \App\Queues\TestQueue::class);
+        Register::regitserQueueDriver(\App\Config\Queue::LOG_QUEUE, \App\Queues\LogQueue::class);
 
         //注册消费者进程
         Register::regitserQueueConsumerProcess();

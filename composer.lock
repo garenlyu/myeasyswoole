@@ -936,16 +936,16 @@
         },
         {
             "name": "easyswoole/http",
-            "version": "2.0.3",
+            "version": "2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/easy-swoole/http.git",
-                "reference": "746b739b80dcb2ddcb62ed394c6abb8c3662dc3f"
+                "reference": "48bc34852b84a35cf0369423fdeed3dc2425f33f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/easy-swoole/http/zipball/746b739b80dcb2ddcb62ed394c6abb8c3662dc3f",
-                "reference": "746b739b80dcb2ddcb62ed394c6abb8c3662dc3f",
+                "url": "https://api.github.com/repos/easy-swoole/http/zipball/48bc34852b84a35cf0369423fdeed3dc2425f33f",
+                "reference": "48bc34852b84a35cf0369423fdeed3dc2425f33f",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -998,9 +998,9 @@
             ],
             "support": {
                 "issues": "https://github.com/easy-swoole/http/issues",
-                "source": "https://github.com/easy-swoole/http/tree/2.0.3"
+                "source": "https://github.com/easy-swoole/http/tree/2.0.4"
             },
-            "time": "2021-06-26T13:24:29+00:00"
+            "time": "2021-08-31T11:51:04+00:00"
         },
         {
             "name": "easyswoole/http-annotation",
@@ -1182,16 +1182,16 @@
         },
         {
             "name": "easyswoole/orm",
-            "version": "1.4.33",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/easy-swoole/orm.git",
-                "reference": "092649e54906a011e6bc0e356664aa0056838e36"
+                "reference": "10157285f718caf1f27e3488b5aadaf5b2dc8e57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/easy-swoole/orm/zipball/092649e54906a011e6bc0e356664aa0056838e36",
-                "reference": "092649e54906a011e6bc0e356664aa0056838e36",
+                "url": "https://api.github.com/repos/easy-swoole/orm/zipball/10157285f718caf1f27e3488b5aadaf5b2dc8e57",
+                "reference": "10157285f718caf1f27e3488b5aadaf5b2dc8e57",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1239,9 +1239,9 @@
             ],
             "support": {
                 "issues": "https://github.com/easy-swoole/orm/issues",
-                "source": "https://github.com/easy-swoole/orm/tree/1.4.33"
+                "source": "https://github.com/easy-swoole/orm/tree/1.5.0"
             },
-            "time": "2021-02-26T07:14:45+00:00"
+            "time": "2021-09-03T07:09:10+00:00"
         },
         {
             "name": "easyswoole/parsedown",
@@ -2499,16 +2499,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.52.0",
+            "version": "2.53.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "369c0e2737c56a0f39c946dd261855255a6fccbe"
+                "reference": "f4655858a784988f880c1b8c7feabbf02dfdf045"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/369c0e2737c56a0f39c946dd261855255a6fccbe",
-                "reference": "369c0e2737c56a0f39c946dd261855255a6fccbe",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/f4655858a784988f880c1b8c7feabbf02dfdf045",
+                "reference": "f4655858a784988f880c1b8c7feabbf02dfdf045",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -2526,7 +2526,7 @@
             },
             "require-dev": {
                 "doctrine/orm": "^2.7",
-                "friendsofphp/php-cs-fixer": "^2.14 || ^3.0",
+                "friendsofphp/php-cs-fixer": "^3.0",
                 "kylekatarnls/multi-tester": "^2.0",
                 "phpmd/phpmd": "^2.9",
                 "phpstan/extension-installer": "^1.0",
@@ -2595,7 +2595,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-08-14T19:10:52+00:00"
+            "time": "2021-09-06T09:29:23+00:00"
         },
         {
             "name": "nikic/fast-route",
@@ -3508,16 +3508,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "9.5.8",
+            "version": "9.5.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "191768ccd5c85513b4068bdbe99bb6390c7d54fb"
+                "reference": "ea8c2dfb1065eb35a79b3681eee6e6fb0a6f273b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/191768ccd5c85513b4068bdbe99bb6390c7d54fb",
-                "reference": "191768ccd5c85513b4068bdbe99bb6390c7d54fb",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/ea8c2dfb1065eb35a79b3681eee6e6fb0a6f273b",
+                "reference": "ea8c2dfb1065eb35a79b3681eee6e6fb0a6f273b",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -3601,7 +3601,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.8"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.9"
             },
             "funding": [
                 {
@@ -3613,7 +3613,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-07-31T15:17:34+00:00"
+            "time": "2021-08-31T06:47:40+00:00"
         },
         {
             "name": "psr/container",
@@ -4722,6 +4722,7 @@
                     "type": "github"
                 }
             ],
+            "abandoned": true,
             "time": "2020-09-28T06:45:17+00:00"
         },
         {
@@ -5640,5 +5641,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }
