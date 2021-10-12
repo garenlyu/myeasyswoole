@@ -39,4 +39,17 @@ class Common
 
         return $userToken;
     }
+
+    /**  
+    * 日志打印 
+    * 
+    * @access public 
+    */ 
+    public static function writeInfoLog($input, $output, $logName)
+    {
+        \EasySwoole\EasySwoole\Logger::getInstance()->info(json_encode([
+            'input' => $input,
+            'output' => $output,
+        ], JSON_UNESCAPED_UNICODE), $logName);
+    }
 }

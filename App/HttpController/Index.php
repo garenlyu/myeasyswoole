@@ -13,6 +13,6 @@ class Index extends Base
     public function index()
     {
         $this->display['content'] = '你好';
-        return $this->response()->write(Render::getInstance()->render('example.index', $this->display));
+        return $this->response()->write(Render::getInstance()->render('home', $this->display));
     }
 }
