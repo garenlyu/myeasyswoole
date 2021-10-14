@@ -36,10 +36,12 @@
         },
 
         userData: {
+          ws: null,
         },
       }
     },
 		created(){
+      this.initWebSocket();
 		},
 		watch:{
 		},
